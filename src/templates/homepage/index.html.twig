@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block title %}Hello HomepageController!{% endblock %}
+
+{% block body %}
+    {% set x = 0 %}
+    {% set y = 0 %}
+    <div style="margin: 0px auto; max-width: 860px">
+    <table class="chess-board">
+        <tr>
+            <th></th>
+            <th>a</th>
+            <th>b</th>
+            <th>c</th>
+            <th>d</th>
+            <th>e</th>
+            <th>f</th>
+            <th>g</th>
+            <th>h</th>
+        </tr>
+    {% for y in range(1,8) %}
+        <tr>
+            <th>{{  0+y }}</th>
+            {% for x in range(1,8) %}
+                {% if y is odd %}
+                    {% if x is odd %}
+                        <td id="{{ x }}{{ y }}" class="light"></td>
+                    {% else %}
+                        <td id="{{ x }}{{ y }}" class="dark"></td>
+                    {% endif %}
+                {% else %}
+                    {% if x is odd %}
+                        <td id="{{ x }}{{ y }}" class="dark"></td>
+                    {% else %}
+                        <td id="{{ x }}{{ y }}" class="light"></td>
+                    {% endif %}
+                {% endif %}
+
+            {% endfor%}
+        </tr>
+    {% endfor%}
+    </table>
+        {% if path is defined %}
+            <p>Cesta: </p>
+            {% set i = 0 %}
+
+            {% for value in path %}
+                <p>
+                    {% set i = i + 1 %}
+                    skok: {{ i }},
+                    X: {{ value.x }}
+                    Y: {{ value.y }}
+                </p>
+            {% endfor %}
+            <p>Počet skoků: {{ i }}</p>
+
+        {% endif %}
+        {{ form(form) }}
+    </div>
+{% endblock %}
+{% block javascripts %}
+
+    {% if jspath is defined %}
+        <script type="text/javascript">
+            var path = [];
+            var x
+            var y
+            var both
+            {% for jsvalue in jspath %}
+                x  = {{ jsvalue.x|json_encode|raw }};
+                y  = {{ jsvalue.y |json_encode|raw }};
+                both = x.toString().concat(y.toString());
+                path.push(both);
+            {% endfor %}
+            document.getElementById(path[0]).style.backgroundColor = "blue";
+
+            path.splice(0, 1);
+            console.log(path)
+            var interval = setInterval(jumps, 500);
+            i=0;
+            function jumps() {
+                if(path.length === i+1){
+                    document.getElementById(path[path.length-1]).style.backgroundColor = "red"
+                    clearInterval(interval);
+                }
+                else{
+                    document.getElementById(path[i]).style.backgroundColor = "yellow";
+                }
+                i++;
+            }
+
+
+        </script>
+    {% endif %}
+{% endblock %}
