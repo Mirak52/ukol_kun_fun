@@ -23,7 +23,7 @@
     {% for y in range(1,8) %}
         <tr>
             <th>{{  0+y }}</th>
-            {% for x in range(1,8) %}
+            {% for x in range(1,8   ) %}
                 {% if y is odd %}
                     {% if x is odd %}
                         <td id="{{ x }}{{ y }}" class="light"></td>
