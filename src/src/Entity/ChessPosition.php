@@ -2,82 +2,57 @@
 
 namespace App\Entity;
 
-use App\Repository\ChessPositionRepository;
-use Doctrine\ORM\Mapping as ORM;
-
 class ChessPosition
 {
-
+    /** @var string */
     private $start_x;
 
+    /** @var int */
     private $start_y;
 
+    /** @var string */
     private $end_x;
 
+    /** @var int */
     private $end_y;
 
-    /**
-     * @return mixed
-     */
-    public function getStartX()
+    public function getStartX(): string
     {
         return $this->start_x;
     }
 
-    /**
-     * @param mixed $start_x
-     */
-    public function setStartX($start_x): void
+    public function setStartX(string $start_x): void
     {
         $this->start_x = $start_x;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getStartY()
+    public function getStartY(): int
     {
         return $this->start_y;
     }
 
-    /**
-     * @param mixed $start_y
-     */
-    public function setStartY($start_y): void
+    public function setStartY(int $start_y): void
     {
         $this->start_y = $start_y;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getEndX()
+    public function getEndX(): string
     {
         return $this->end_x;
     }
 
-    /**
-     * @param mixed $end_x
-     */
-    public function setEndX($end_x): void
+    public function setEndX(string $end_x): void
     {
         $this->end_x = $end_x;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getEndY()
+    public function getEndY(): int
     {
         return $this->end_y;
     }
 
-    /**
-     * @param mixed $end_y
-     */
-    public function setEndY($end_y): void
+    public function setEndY(int $end_y): void
     {
         $this->end_y = $end_y;
     }
-
 }

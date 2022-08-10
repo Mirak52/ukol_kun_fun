@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\ChessPosition;
 use App\Form\ChessType;
 use App\model\PathModel;
-use ContainerBPNXIp6\getVarDumper_Command_ServerDumpService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +25,6 @@ class HomepageController extends AbstractController
      */
     public function index(Request $request)
     {
-
         $form = $this->createForm(ChessType::class, new ChessPosition());
 
         $form->handleRequest($request);
